@@ -1,0 +1,23 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> set = new HashSet<>();
+        int l = 0;
+        int length = 0;
+
+        for (int r = 0; r < s.length(); r++) {
+            while(set.contains(s.charAt(r))) {
+                set.remove(s.charAt(l));
+                l++;
+            }
+            set.add(s.charAt(r));
+            length = Math.max(length, set.size());
+        }
+        return length;
+    }
+}
+
+/*
+Sliding window (longest window --> shrink while invalid)
+Time: O(n)
+Space: O(m) m=total number of unique characters in the string.
+*/
